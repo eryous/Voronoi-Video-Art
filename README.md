@@ -9,6 +9,7 @@ As we add more and more code to the project, we must agree upon some basic rules
 Think of it like hitting save. Your last commit for the feature/fix/etc should be VERY detailed. Don’t use -m for it. Write a subject line (a single sentence summary of what you did), followed by an empty line, followed by a paragraph describing what you solved/fixed, followed by an empty line, followed by a paragraph describing how you solved it. Follow this format **strictly** for the **last** commit. This makes the code changes amazingly traceable using git blame (e.g. someone can see who changed a given line, when, why, and how).
 
 [More details here][https://www.conventionalcommits.org/en/v1.0.0/#summary]
+
 ### Branch often 
 
 Think of it like copy-pasting the source code into a new folder. Branches are very lightweight and an amazing way to isolate different works. Don’t be afraid to have many branches; you can quickly delete them if you need to. By using branches to isolate your work, you can avoid merge conflicts for the most part. Here are a few rules related to branches:
@@ -23,7 +24,7 @@ Think of it like copy-pasting the source code into a new folder. Branches are ve
 ### Use Issues
 
 Issues are the team’s todo list. Once we decide on a user story, we can break it down into issues and move it GitHub. Issues make it really easy to discuss code, progress, and larger goals. For example, if you have a line like Issue #12 in your commit, GitHub will link that commit in the issue comments. GitHub also provides a board for Agile development. All new issues go into the Backlog. When we decide to work on a given issue, we move it into Todo. It’s then moved into In Progress once someone starts working on it. When the issue is closed, Automation will put the issue into the Done column. This makes it easy to see who’s doing what and how much time we need to finish whatever feature/fix.
-***
+
 # Pip
 
 Pip is a package manager. It grabs packages from https://pypi.org/ and 
