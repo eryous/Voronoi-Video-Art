@@ -8,7 +8,7 @@ As we add more and more code to the project, we must agree upon some basic rules
 
 Think of it like hitting save. Your last commit for the feature/fix/etc should be VERY detailed. Don’t use -m for it. Write a subject line (a single sentence summary of what you did), followed by an empty line, followed by a paragraph describing what you solved/fixed, followed by an empty line, followed by a paragraph describing how you solved it. Follow this format **strictly** for the **last** commit. This makes the code changes amazingly traceable using git blame (e.g. someone can see who changed a given line, when, why, and how).
 
-[More details here][https://www.conventionalcommits.org/en/v1.0.0/#summary]
+[More details here](https://www.conventionalcommits.org/en/v1.0.0/#summary)
 
 ### Branch often 
 
