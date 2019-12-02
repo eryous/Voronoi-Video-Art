@@ -4,7 +4,7 @@
 
 As we add more and more code to the project, we must agree upon some basic rules to avoid stepping on each other's work. There are tools in place to make this easier (e.g. Git, linters,TravisCI, etc) but at the end of the day, it’s all about communication. If in doubt, use one of the communication channels to talk to someone.
 
-### ommit Often  
+### Commit Often  
 
 Think of it like hitting save. Your last commit for the feature/fix/etc should be VERY detailed. Don’t use -m for it. Write a subject line (a single sentence summary of what you did), followed by an empty line, followed by a paragraph describing what you solved/fixed, followed by an empty line, followed by a paragraph describing how you solved it. Follow this format **strictly** for the **last** commit. This makes the code changes amazingly traceable using git blame (e.g. someone can see who changed a given line, when, why, and how).
 

@@ -9,7 +9,6 @@ frames = './frames/'
 vid_dir = frames + prompt_user + '/'
 vid = prompt_user + '.mp4'
 
-
 def vid_to_frames(video_title):
     capture = cv2.VideoCapture(video_title)
 

@@ -126,3 +126,6 @@ dmypy.json
 
 # JPEG
 *.jpg
+
+.vim
+*.mp4
