@@ -1,91 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link
-      href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      rel="stylesheet"
-      id="bootstrap-css"
-    />
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://s3.amazonaws.com/gp4emdrsinus/dbstuff/main.css"
-    />
+    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- required to handle IE and overcome browser incompatibility issues-->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Render screen on size -->
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" /> -->
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css" /> if you downloaded bootstrap to your computer -->
+
+    <!-- required scripts for IE: needed to support IT people. Some developer wrote scripts to automatically handle this stuff-->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
     <link
       rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
     />
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css"
-    />
-    <script
-      type="text/javascript"
-      charset="utf8"
-      src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"
-    ></script>
-    <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="stylesheet" href="styles/mystyles.css" />
+
+    <title>Voronoi Diagram</title>
   </head>
-  <div class="container">
-    <hr />
 
-    HELLO WORLD!
+  <body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <a class="navbar-brand" href="#">CS 6161: Graduate Algorithms </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapsibleNavbar"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="row">
-      {% for l in data %}
-      <div class="col-md-4">
-        <figure class="card card-product">
-          <div class="img-wrap">
-            <img
-              src="https://s3.amazonaws.com/gp4emdrsinus/dbstuff/basketball.jpg"
-            />
-          </div>
-          <figcaption class="info-wrap">
-            <h4 class="title">{{l.name}}</h4>
-            <p class="desc">{{l.desc}}</p>
-            <div class="rating-wrap">
-              <div class="label-rating">132 reviews</div>
-              <div class="label-rating">154 orders</div>
-            </div>
-            <!-- rating-wrap.// -->
-          </figcaption>
-          <div class="bottom-wrap">
-            <a href="" class="btn btn-sm btn-primary float-right">Order Now</a>
-            <div class="price-wrap h5">
-              <span class="price-new">${{l.price}}</span>
-              <del class="price-old">$20</del>
-            </div>
-            <!-- price-wrap.// -->
-          </div>
-          <!-- bottom-wrap.// -->
-        </figure>
+      <div
+        class="collapse navbar-collapse justify-content-end"
+        id="collapsibleNavbar"
+      ></div>
+    </nav>
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Term Project</h1>
+        <hr />
+        <p>
+          Creating Voronoi art using GIFs. Use this site to upload a GIF, and
+          watch as it becomes Vornoi'd.
+        </p>
+        <p>
+          Developed by Yonathan Fisseha (yf2ey), Youssef Errami (ye4pg), and
+          Simranjit Bhatia (sk8wt)
+        </p>
       </div>
-      <!-- col // -->
-      {% endfor %}
     </div>
-    <!-- row.// -->
-  </div>
-  <!--container.//-->
 
-  <br /><br /><br />
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <center>
+            <h3>Select a GIF</h3>
+            <p>
+              Choose any GIF that you would like to see in Vornoi art.
+            </p>
+
+            <a class="btn btn-primary btn-lg" href="#" role="button">
+              Upload
+            </a>
+          </center>
+        </div>
+        <div class="col-md-6">
+          <center>
+            <h3>See the Result</h3>
+            <p></p>
+
+            <img
+              src="https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzA4OC85MTEvb3JpZ2luYWwvZ29sZGVuLXJldHJpZXZlci1wdXBweS5qcGVn"
+              width="90%"
+            />
+          </center>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <!-- <script src="js/bootstrap.min.js"></script> if you downloaded bootstrap to your computer -->
+  </body>
 </html>
