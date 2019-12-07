@@ -69,6 +69,11 @@
               Choose any GIF that you would like to see in Vornoi art.
             </p>
 
+            <form enctype="multipart/form-data" method="POST" action="">
+              {% csrf_token %} {{ form.as_p }}
+              <input type="submit" value="Upload" />
+            </form>
+
             <a class="btn btn-primary btn-lg" href="#" role="button">
               Upload
             </a>
@@ -79,10 +84,11 @@
             <h3>See the Result</h3>
             <p></p>
 
-            <img
-              src="https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzA4OC85MTEvb3JpZ2luYWwvZ29sZGVuLXJldHJpZXZlci1wdXBweS5qcGVn"
-              width="90%"
-            />
+            <video width="400" controls>
+              <source src="{{ MEDIA_URL }}{{ videofile }}" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            {{ MEDIA_URL }}{{ videofile }}
           </center>
         </div>
       </div>
