@@ -116,15 +116,3 @@ class Quad:
             point_x[i] = y + h / 2
 
         return point_x, point_y
-
-
-img = cv2.imread('flower.jpg')
-q = Quad(img, error_rate=0.3, is_root=True)
-
-xs, ys = q.generate_seeds()
-for i in range(min(len(xs), len(ys))):
-    cv2.circle(img, (int(xs[i]), int(ys[i])), 2, (250, 0, 0))
-
-cv2.imshow("image", img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
