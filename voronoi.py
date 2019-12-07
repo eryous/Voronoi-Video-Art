@@ -22,7 +22,7 @@ def circumcircle(x1,y1,x2,y2,x3,y3):
   return x, y, r
 
 img = cv2.imread('flower.jpg')
-q = Quad(img, error_rate=0.3, is_root=True)
+q = Quad(img, error_rate=0.5, is_root=True)
 
 xs, ys = q.generate_seeds()
 points = np.array(list(zip(xs,ys)))
@@ -52,7 +52,7 @@ for i in range(min(len(x_mids), len(y_mids))):
 
 plt.triplot(points[:,0], points[:,1], tri.simplices.copy())
 plt.plot(points[:,0], points[:,1], 'o')
-plt.show()
+# plt.show()
 
 
 

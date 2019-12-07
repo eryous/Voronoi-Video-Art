@@ -125,6 +125,6 @@ dmypy.json
 .pyre/
 
 # JPEG
-
+frames
 .vim
 *.mp4
