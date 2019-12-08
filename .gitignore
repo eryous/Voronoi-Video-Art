@@ -125,7 +125,7 @@ dmypy.json
 .pyre/
 
 # JPEG
-*.jpg
-
+frames
 .vim
 *.mp4
+__pycache__
