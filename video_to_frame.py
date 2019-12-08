@@ -1,6 +1,6 @@
 import os
 from os.path import isfile, join
-
+from multiprocessing import Pool
 import cv2
 import numpy as np
 from voronoi import voro
@@ -38,11 +38,14 @@ def vid_to_frames(video_title):
 vid_to_frames(vid)
 
 pics = [f for f in os.listdir(vid_dir) if isfile(join(vid_dir, f))]
+input_voro = []
 for i in range(0,len(pics)):
+    input_voro.append((vid_dir + pics[i],pics[i][:-4],voro_vid_dir))
+    # voro(vid_dir + pics[i],pics[i][:-4],voro_vid_dir)
 
-    voro(vid_dir + pics[i],pics[i][:-4],voro_vid_dir)
-
-
+pool = Pool(30)
+pool.map(voro, input_voro)
+pool.close()
 def frames_to_vid(in_dir, fps):  #
     frame_array = []
     files = [f for f in os.listdir(in_dir) if isfile(join(in_dir, f))]
