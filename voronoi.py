@@ -22,7 +22,8 @@ def circumcircle(x1, y1, x2, y2, x3, y3):
     r = math.sqrt(xa * xa + ya * ya)
     return x, y, r
 
-def voro(image,index,dir):
+def voro(packed_input):
+    image, index, dir = packed_input
     print("This is the image path: ",image)
     img = cv2.imread(image)
     q = Quad(img, error_rate=0.1, is_root=True)
