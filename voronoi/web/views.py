@@ -5,7 +5,11 @@ from django.shortcuts import render
 
 def home(request):
     cur_vid = Video.objects.last()
-    vid_file_path = cur_vid.videofile.url
+
+    if (cur_vid):
+        vid_file_path = cur_vid.videofile.url
+    else:
+        vid_file_path = "/media/videos/love.mp4"
 
     form = VideoForm(request.POST or None, request.FILES or None)
     if form.is_valid():
