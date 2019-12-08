@@ -42,6 +42,7 @@ class Quad:
         # If this node is root then generate the quadtree
         if is_root is True:
             self.leaves = self.generate_tree()
+            self.leaves_copy = self.leaves.copy()
 
     def generate_tree(self):
         """Generate the quadtree 

@@ -6,6 +6,8 @@ import numpy as np
 from voronoi import voro
 
 prompt_user = input("Enter the video you would like to 'Voronoi-fy': ")
+frames_per_second = int(input("Enter the amount of frames per second you would like to see the final product in: "))
+error_rate = float(input("Enter an error rate between .1 - .5, the smaller the rate, the more sampling is done: "))
 frames = './frames/'
 vid_dir = frames + prompt_user + '/'
 voro_vid_dir = frames + "voro_" + prompt_user + '/'
@@ -40,7 +42,7 @@ vid_to_frames(vid)
 pics = [f for f in os.listdir(vid_dir) if isfile(join(vid_dir, f))]
 input_voro = []
 for i in range(0,len(pics)):
-    input_voro.append((vid_dir + pics[i],pics[i][:-4],voro_vid_dir))
+    input_voro.append((vid_dir + pics[i],pics[i][:-4],voro_vid_dir, error_rate))
     # voro(vid_dir + pics[i],pics[i][:-4],voro_vid_dir)
 
 pool = Pool(30)
@@ -62,4 +64,4 @@ def frames_to_vid(in_dir, fps):  #
     output.release()
 
 
-frames_to_vid(voro_vid_dir, 25)
+frames_to_vid(voro_vid_dir, frames_per_second)

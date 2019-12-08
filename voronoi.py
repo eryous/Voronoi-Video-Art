@@ -23,14 +23,13 @@ def circumcircle(x1, y1, x2, y2, x3, y3):
     return x, y, r
 
 def voro(packed_input):
-    image, index, dir = packed_input
+    image, index, dir, error = packed_input
     print("This is the image path: ",image)
     img = cv2.imread(image)
-    q = Quad(img, error_rate=0.1, is_root=True)
+    q = Quad(img, error_rate=error, is_root=True)
 
     xs, ys = q.generate_seeds()
-    q = Quad(img, error_rate=0.1, is_root=True)
-    for leaf in q.leaves:
+    for leaf in q.leaves_copy:
         cv2.rectangle(img,(leaf.y, leaf.x), (leaf.y+leaf.height, leaf.x+leaf.width),__average_rgb__(leaf.img), cv2.FILLED)
 
     points = np.array(list(zip(xs, ys)))
