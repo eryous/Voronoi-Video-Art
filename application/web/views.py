@@ -1,7 +1,7 @@
 from .models import Video
 from .forms import VideoForm
 from django.shortcuts import render
-
+from voronoi_backend import video_voronoi
 
 def home(request):
     cur_vid = Video.objects.last()
