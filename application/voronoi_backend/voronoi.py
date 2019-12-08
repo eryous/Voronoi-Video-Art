@@ -60,6 +60,7 @@ def voro(packed_input):
             center = circle_tri[n]
             cv2.line(img, center, current, (0, 0, 0))
 
+    print("writing to a file")
     os.chdir(dir)
     cv2.imwrite(index+'.jpg', img)
     os.chdir("../..")

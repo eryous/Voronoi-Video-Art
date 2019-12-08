@@ -8,8 +8,11 @@ from .voronoi import voro
 FRAMES = './frames/'
 
 
-def video_to_frames(video_path, original_video_frames, voronoi_video_frames):
-    capture = cv2.VideoCapture(video_path)
+def video_to_frames(video_path, original_video_frames, voronoi_video_frames, capture=None):
+    if not capture:
+        capture = cv2.VideoCapture(video_path)
+    else:
+        capture = capture
 
     if not os.path.exists(FRAMES):
         os.makedirs(FRAMES)
@@ -27,10 +30,11 @@ def video_to_frames(video_path, original_video_frames, voronoi_video_frames):
         if not ret:
             break
 
-        name = original_video_frames + str(current_frame) + '.jpg'
+        name = original_video_frames + "/" + str(current_frame) + '.jpg'
         cv2.imwrite(name, frame)
         current_frame += 1
     capture.release()
+
     cv2.destroyAllWindows()
 
 
@@ -38,7 +42,6 @@ def generate_voronoi_multicore(video_frames_dir, voronoi_frame_dir, error_rate):
     """ Creates the voronoi video using all cores
     :returns: None. All processes write to file
     """
-
     original_frames = [f for f in os.listdir(
         video_frames_dir) if isfile(join(video_frames_dir, f))]
     input_voro = []
@@ -69,17 +72,17 @@ def frames_to_video(frame_source, video_dest_dir, fps, video_dir):
     output.release()
 
 
-def video_to_voronoi(video_name, from_path, to_path, fps, error_rate):
+def video_to_voronoi(video_name, from_path, to_path, fps, error_rate, capture=None):
     """ Takes a video, runs voronoi, writes the result """
 
     print("inside method!")
     original_video_frames = FRAMES + video_name + '/'
     voronoi_video_frames = FRAMES + "voro_" + video_name + '/'
 
-    video_to_frames(from_path, FRAMES+video_name, to_path)
-    # generate_voronoi_multicore(
-    # original_video_frames, voronoi_video_frames, error_rate)
-    # frames_to_video(voronoi_video_frames, to_path, fps, video_name+".mp4")
+    video_to_frames(from_path, FRAMES+video_name, voronoi_video_frames, capture)
+    generate_voronoi_multicore(
+        original_video_frames, voronoi_video_frames, error_rate)
+    frames_to_video(voronoi_video_frames, to_path, fps, video_name+".mp4")
 
 
 if __name__ == "__main__":
