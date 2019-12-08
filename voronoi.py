@@ -1,4 +1,4 @@
-from quad_sampler import Quad
+from quad_sampler import Quad, __average_rgb__
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt
@@ -23,10 +23,14 @@ def circumcircle(x1, y1, x2, y2, x3, y3):
     return x, y, r
 
 
-img = cv2.imread('flower.jpg')
-q = Quad(img, error_rate=0.3, is_root=True)
+img = cv2.imread('taj_2.png')
+q = Quad(img, error_rate=0.1, is_root=True)
 
 xs, ys = q.generate_seeds()
+q = Quad(img, error_rate=0.1, is_root=True)
+for leaf in q.leaves:
+    cv2.rectangle(img,(leaf.y, leaf.x), (leaf.y+leaf.height, leaf.x+leaf.width),__average_rgb__(leaf.img), cv2.FILLED)
+
 points = np.array(list(zip(xs, ys)))
 
 
@@ -63,13 +67,12 @@ for i in range(len(tri.simplices)):
 
     for n in temp:
         center = circle_tri[n]
-        cv2.line(img,center,current,(250,0,0))
+        cv2.line(img,center,current,(0,0,0))
 
 
-plt.triplot(points[:, 0], points[:, 1], tri.simplices.copy())
-plt.plot(points[:, 0], points[:, 1], 'o')
-# plt.show()
-
+# plt.triplot(points[:, 0], points[:, 1], tri.simplices.copy())
+# plt.plot(points[:, 0], points[:, 1], 'o')
+# # plt.show()
 
 cv2.imshow("image", img)
 cv2.waitKey(0)
