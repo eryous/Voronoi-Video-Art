@@ -4,7 +4,7 @@ import cv2
 import matplotlib.pyplot as plt
 from scipy.spatial import Delaunay
 import math
-
+import os
 
 def circumcircle(x1, y1, x2, y2, x3, y3):
     a2 = x1 - x2
@@ -22,58 +22,60 @@ def circumcircle(x1, y1, x2, y2, x3, y3):
     r = math.sqrt(xa * xa + ya * ya)
     return x, y, r
 
+def voro(image,index,dir):
+    print("This is the image path: ",image)
+    img = cv2.imread(image)
+    q = Quad(img, error_rate=0.1, is_root=True)
 
-img = cv2.imread('taj_2.png')
-q = Quad(img, error_rate=0.1, is_root=True)
+    xs, ys = q.generate_seeds()
+    q = Quad(img, error_rate=0.1, is_root=True)
+    for leaf in q.leaves:
+        cv2.rectangle(img,(leaf.y, leaf.x), (leaf.y+leaf.height, leaf.x+leaf.width),__average_rgb__(leaf.img), cv2.FILLED)
 
-xs, ys = q.generate_seeds()
-q = Quad(img, error_rate=0.1, is_root=True)
-for leaf in q.leaves:
-    cv2.rectangle(img,(leaf.y, leaf.x), (leaf.y+leaf.height, leaf.x+leaf.width),__average_rgb__(leaf.img), cv2.FILLED)
-
-points = np.array(list(zip(xs, ys)))
-
-
-tri = Delaunay(points)
-coords = points[tri.simplices]
-circle_cord=[]
-radii = []
-circle_tri = {}
-for i in range(0, len(points[tri.simplices])):
-    x, y, r = circumcircle(coords[i][0][0], coords[i][0][1],
-                           coords[i][1][0], coords[i][1][1],
-                           coords[i][2][0], coords[i][2][1])
-    circle_cord.append((x,y))
-    circle_tri[i] = (int(x),int(y))
-    radii.append(r)
-
-# print(x_mids)
-# print(y_mids)
-# print(radii)
-
-# for i in range(min(len(x_mids), len(y_mids))):
-    # cv2.circle(img, (int(x_mids[i]), int(y_mids[i])),
-               # int(radii[i]), (250, 0, 0))
+    points = np.array(list(zip(xs, ys)))
 
 
-for i in range(len(tri.simplices)):
-    current = circle_tri[i]
-    neighbors = tri.neighbors[i]
-    temp = []
-    for n in neighbors:
-        if n >= 0:
-            temp.append(n)
+    tri = Delaunay(points)
+    coords = points[tri.simplices]
+    circle_cord=[]
+    radii = []
+    circle_tri = {}
+    for i in range(0, len(points[tri.simplices])):
+        x, y, r = circumcircle(coords[i][0][0], coords[i][0][1],
+                            coords[i][1][0], coords[i][1][1],
+                            coords[i][2][0], coords[i][2][1])
+        circle_cord.append((x,y))
+        circle_tri[i] = (int(x),int(y))
+        radii.append(r)
+
+    # print(x_mids)
+    # print(y_mids)
+    # print(radii)
+
+    # for i in range(min(len(x_mids), len(y_mids))):
+        # cv2.circle(img, (int(x_mids[i]), int(y_mids[i])),
+                # int(radii[i]), (250, 0, 0))
 
 
-    for n in temp:
-        center = circle_tri[n]
-        cv2.line(img,center,current,(0,0,0))
+    for i in range(len(tri.simplices)):
+        current = circle_tri[i]
+        neighbors = tri.neighbors[i]
+        temp = []
+        for n in neighbors:
+            if n >= 0:
+                temp.append(n)
 
 
-# plt.triplot(points[:, 0], points[:, 1], tri.simplices.copy())
-# plt.plot(points[:, 0], points[:, 1], 'o')
-# # plt.show()
+        for n in temp:
+            center = circle_tri[n]
+            cv2.line(img,center,current,(0,0,0))
 
-cv2.imshow("image", img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+
+    # plt.triplot(points[:, 0], points[:, 1], tri.simplices.copy())
+    # plt.plot(points[:, 0], points[:, 1], 'o')
+    # # plt.show()
+    os.chdir(dir)
+    cv2.imwrite(index+'.jpg', img)
+    os.chdir("../..")
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
