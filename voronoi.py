@@ -48,14 +48,6 @@ def voro(packed_input):
         circle_tri[i] = (int(x),int(y))
         radii.append(r)
 
-    # print(x_mids)
-    # print(y_mids)
-    # print(radii)
-
-    # for i in range(min(len(x_mids), len(y_mids))):
-        # cv2.circle(img, (int(x_mids[i]), int(y_mids[i])),
-                # int(radii[i]), (250, 0, 0))
-
 
     for i in range(len(tri.simplices)):
         current = circle_tri[i]
@@ -65,17 +57,10 @@ def voro(packed_input):
             if n >= 0:
                 temp.append(n)
 
-
         for n in temp:
             center = circle_tri[n]
             cv2.line(img,center,current,(0,0,0))
 
-
-    # plt.triplot(points[:, 0], points[:, 1], tri.simplices.copy())
-    # plt.plot(points[:, 0], points[:, 1], 'o')
-    # # plt.show()
     os.chdir(dir)
     cv2.imwrite(index+'.jpg', img)
     os.chdir("../..")
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
