@@ -59,31 +59,24 @@
               Choose any mp4 file that you would like to see in Vornoi art.
             </p>
 
-            <form enctype="multipart/form-data" method="POST" action="">
+            <form
+              enctype="multipart/form-data"
+              method="POST"
+              action="{% url 'home' %}"
+            >
               {% csrf_token %} {{ form.as_p }}
 
               <p>
                 Enter your desired error rate (must be between 0.1 - 0.5) and
                 number of frames per second.
               </p>
-              <input
-                name="error_rate"
-                class="form-control mr-sm-4"
-                placeholder="Enter an Error Rate"
-              />
-
-              <input
-                name="fps"
-                class="form-control mr-sm-4"
-                placeholder="Enter Frames/Sec"
-              />
               <input type="submit" value="Upload" />
             </form>
 
             <br />
           </center>
         </div>
-        <div class="col-md-6">
+        <div class=" col-md-6">
           <center>
             <h3>See the Result</h3>
 
