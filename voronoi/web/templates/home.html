@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -84,12 +86,13 @@
             <h3>See the Result</h3>
             <p></p>
 
-            <video width="400" controls>
-              <source src="{{ MEDIA_URL }}{{ videofile }}" type="video/mp4" />
-              Your browser does not support the video tag.
+            <video width="600" controls>
+              <source src="{{ videofile }}" type="video/mp4" />
+              File not found.
             </video>
-            {{ MEDIA_URL }}{{ videofile }}
           </center>
+          cur_vid var: {{ cur_vid }} <br />
+          videofile var: {{ videofile}}
         </div>
       </div>
     </div>
