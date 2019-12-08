@@ -24,6 +24,7 @@ def circumcircle(x1, y1, x2, y2, x3, y3):
 
 
 def voro(packed_input):
+    print("Processing Voronoi diagrams")
     image, index, dir, error = packed_input
     img = cv2.imread(image)
     q = Quad(img, error_rate=error, is_root=True)
@@ -60,7 +61,6 @@ def voro(packed_input):
             center = circle_tri[n]
             cv2.line(img, center, current, (0, 0, 0))
 
-    print("writing to a file")
     os.chdir(dir)
     cv2.imwrite(index+'.jpg', img)
     os.chdir("../..")
