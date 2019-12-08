@@ -61,36 +61,26 @@
 
             <form enctype="multipart/form-data" method="POST" action="">
               {% csrf_token %} {{ form.as_p }}
-              <input type="submit" value="Upload" />
-            </form>
 
-            <br />
-
-            <p>
-              Enter your desired error rate (must be between 0.1 - 0.5) and
-              number of frames per second.
-            </p>
-
-            <form class="form-inline my-3 my-md-6" action="" method="POST">
+              <p>
+                Enter your desired error rate (must be between 0.1 - 0.5) and
+                number of frames per second.
+              </p>
               <input
                 name="error_rate"
                 class="form-control mr-sm-4"
-                type="search"
                 placeholder="Enter an Error Rate"
-                aria-label="Error"
               />
 
               <input
                 name="fps"
                 class="form-control mr-sm-4"
-                type="search"
                 placeholder="Enter Frames/Sec"
-                aria-label="frames"
               />
-              <button type="submit" value="Submit">
-                Submit
-              </button>
+              <input type="submit" value="Upload" />
             </form>
+
+            <br />
           </center>
         </div>
         <div class="col-md-6">
