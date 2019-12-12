@@ -62,7 +62,7 @@ def frames_to_video(frame_source, video_dest_dir, fps, video_dir):
         size = (width, height)
         frame_array.append(img)
 
-    output = cv2.VideoWriter(video_dest_dir+"voronoi_" + video_dir, cv2.VideoWriter_fourcc(*'MP4V'),
+    output = cv2.VideoWriter(video_dest_dir+"/voronoi_" + video_dir, cv2.VideoWriter_fourcc(*'MP4V'),
                              fps, size)
     for i in range(len(frame_array)):
         output.write(frame_array[i])
