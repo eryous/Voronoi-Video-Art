@@ -1,4 +1,4 @@
-# CS 6161: Algorithms Term Project
+# Voronoi Video Art
 
 To run the code from the terminal, clone the repo and run the following commands (assuming you’re beginning at the root of the repo):
 - pip install -r requirements.txt
